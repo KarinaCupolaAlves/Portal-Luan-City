@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Portal Luan City | Dashboard</title>
+
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="icon" href="assets/icon/favicon2.ico" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Dashboard Luan Santana</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1 class="titulo">Portal Luan City</h1>
+        <ul class="navbar" id="navbar_ul">
+
+        </ul>
+    </div>
+    
+    <div class="dashboard">
+
+        <h1>Luan Santana: Dashboard</h1>
+
+        <main class="dashboard-container">
+            <div class="chart-box">
+                <h3>Top 5 Músicas Mais Ouvidas</h3>
+                <canvas id="chartMusicas"></canvas>
+            </div>
+
+            <div class="chart-box">
+                <h3>Seu Nível de Fã (Quiz)</h3>
+                <canvas id="chartQuiz"></canvas>
+            </div>
+        </main>
+
+
+        <footer class="footer">
+            <div class="container-footer">
+                <p>Portal Luan City</p>
+                <div class="creditos">
+                    <span>Feito com amor por aluna da SPtech</span>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+<script src="./assets/js/navbar.js"></script>
+
+</html>
+<script>
+    alterarNavbar();
+    let Musicas = document.getElementById('chartMusicas').getContext('2d');
+    new Chart(Musicas, {
+        type: 'bar',
+        data: {
+            labels: ['Deja Vu', 'Meio Termo', 'Coração Cigano', 'Morena', 'Meteoro'],
+            datasets: [{
+                label: 'Milhões de Streamings',
+                data: [150, 120, 110, 95, 80],
+                backgroundColor: '#ff4d4d',
+                borderColor: '#b8860b',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                x: { grid: { color: '#333' }, ticks: { color: '#fff' } },
+                y: { grid: { display: false }, ticks: { color: '#fff' } }
+            }
+        }
+    });
+
+    let Quiz = document.getElementById('chartQuiz').getContext('2d');
+    new Chart(Quiz, {
+        type: 'doughnut',
+        data: {
+            labels: ['Sua Pontuação', 'Falta para ser Super Fã'],
+            datasets: [{
+                data: [70, 30],
+                backgroundColor: ['#ff4d4d', '#333'],
+                borderWidth: 0,
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            cutout: '70%',
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { color: '#fff' }
+                }
+            }
+        }
+    });
+</script>

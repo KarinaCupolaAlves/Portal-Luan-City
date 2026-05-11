@@ -1,0 +1,655 @@
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .header {
+        height: 12vh;
+        padding: 0 10px;
+        background-color: #0b0d17;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        color: rgb(255, 255, 255);
+    }
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 20px;
+    }
+
+    .titulo {
+        font-size: 30px;
+        font-family: 'Lora', serif;
+    }
+
+    .navbar {
+        display: flex;
+        gap: 50px;
+        margin-top: 0.5%;
+        margin-right: 5%;
+        color: rgb(249, 249, 249);
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 20px;
+        text-decoration: none;
+    }
+
+    .navbar li a {
+        transition: color 0.3s;
+    }
+
+    .agora-line {
+        align-items: center;
+        display: flex;
+    }
+
+    .navbar li a:hover {
+        color: #d4af37;
+    }
+
+    li {
+        list-style: none;
+        color: #fefefd;
+    }
+
+    a {
+        text-decoration: none;
+        color: #fdfdfd;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 90%;
+    }
+
+    .nome-usuario {
+        color: #6a1b9a;
+    }
+
+    .btn-sair {
+        background-color: #6a1b9a;
+        border: none;
+        padding: 3px 15px;
+        border-radius: 10px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn-sair:hover {
+        background-color: #8b4780;
+    }
+
+    .banner {
+        background-image: url('../assets/imgs/Luan\ Santana\ inicio.jpg');
+        background-size: cover;
+        background-position: top;
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        min-height: 600px;
+
+        color: #fdfdfd;
+    }
+
+    .conteudo {
+        width: 40%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .conteudo h1 {
+        text-align: center;
+        font-size: 23px;
+    }
+
+    .conteudo p {
+        text-align: center;
+        width: 100%;
+        font-size: 20px;
+    }
+
+    .conteudo button {
+        align-self: center;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #6a1b9a;
+        color: #fefefd;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 50px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .conteudo button:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+
+    .container-banner h1 {
+        margin-bottom: 15px;
+        text-align: right;
+        font-size: 10px;
+        color: white;
+        width: 450px;
+        padding-right: 10px;
+    }
+
+    .segunda-frase {
+        color: #fdfdfd;
+        font-size: 22px;
+        opacity: 0.9;
+        margin-top: 10px;
+        margin-bottom: 30px;
+        font-weight: 300;
+    }
+
+    .sobre {
+        background: linear-gradient(180deg, #0b0d17 0%, #111428 100%);
+        color: white;
+        text-align: center;
+        padding: 80px 20px;
+    }
+
+    .sobre h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    .sobre h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .sobre h4 {
+        font-size: 18px;
+        opacity: 0.8;
+        font-family: sans-serif;
+        margin-top: 20px;
+    }
+
+    .sobre-container {
+        width: 90%;
+        margin: auto;
+    }
+
+    .sobre-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 40px 0;
+        gap: 30px;
+    }
+
+    .sobre-card.reverse {
+        flex-direction: row-reverse;
+    }
+
+    .sobre-card-texto {
+        flex: 1;
+    }
+
+    .sobre-card-texto h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    .sobre-card-texto p {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .sobre-card-img {
+        flex: 1;
+    }
+
+    .sobre-card-img img {
+        width: 100%;
+        max-width: 400px;
+        border-radius: 10px;
+    }
+
+    .reverse {
+        flex-direction: row-reverse;
+    }
+
+    .infos {
+        background: linear-gradient(180deg, #0b0d17 0%, #111428 100%);
+        text-align: center;
+        padding: 100px 20px;
+        border-top: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .infos h2 {
+        font-size: 30px;
+        color: #fdfdfd;
+    }
+
+    .infos h4 {
+        transition: 0.3s;
+    }
+
+    .infos h4:hover {
+        color: #dbc67f;
+    }
+
+    .infos-conteudo {
+        margin-top: 60px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    .video {
+        border: 1px solid gold;
+        border-radius: 10px;
+        overflow: hidden;
+        max-width: 500px;
+        width: 100%;
+    }
+
+    .video video {
+        width: 100%;
+        display: block;
+    }
+
+    .infos-turnes {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 400px;
+        width: 100%;
+    }
+
+    .info {
+        text-align: left;
+        width: 100%;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .info h4 {
+        font-size: 18px;
+        color: gold;
+        font-weight: 800;
+        margin-bottom: 5px;
+    }
+
+    .info p {
+        font-size: 12px;
+        color: azure;
+    }
+
+    .footer {
+        background-color: #0b0d17;
+        width: 100%;
+        color: white;
+        padding: 30px;
+        border-top: 1px solid gold;
+    }
+
+    .container-footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .footer p {
+        font-family: 'Lora', serif;
+        font-size: 20px;
+        color: gold;
+        font-weight: bold;
+    }
+
+    .creditos {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        opacity: 0.6;
+    }
+
+    .version {
+        font-size: 0.8rem;
+        margin-top: 5px;
+    }
+
+    .login {
+        display: flex;
+        background-image: url('../assets/imgs/Luan-Santana3.webp');
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+    }
+
+    .card-login {
+        background: rgba(0, 0, 0, 0.65);
+        backdrop-filter: blur(12px);
+        border-radius: 25px;
+        text-align: center;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+        padding: 35px 30px;
+
+    }
+
+    .card-login h2 {
+        color: rgb(188, 108, 191);
+        margin-bottom: 25px;
+        font-size: 28px;
+    }
+
+    .formulario {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+    }
+
+    .campo {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    }
+
+    .campo span {
+        color: rgb(188, 108, 191);
+        font-weight: bold;
+        margin-bottom: 6px;
+        font-size: 13px;
+    }
+
+    .campo input {
+        padding: 12px;
+        border-radius: 10px;
+        outline: none;
+        border: 2px solid rgb(214, 114, 207);
+        font-size: 14px;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.9);
+    }
+
+    .botao-login {
+        margin-top: 10px;
+        padding: 12px;
+        border: none;
+        border-radius: 12px;
+        background: rgb(188, 108, 191);
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .botao-login:hover {
+        background: rgb(160, 80, 165);
+        transform: scale(1.03);
+    }
+
+    .opcoes-login {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: white;
+    }
+
+    .opcoes-login a {
+        color: rgb(188, 108, 191);
+        text-decoration: none;
+    }
+
+
+    .cadastro {
+        margin-top: 100px;
+        font-size: 12px;
+        color: white;
+    }
+
+    .cadastro a {
+        color: rgb(188, 108, 191);
+        text-decoration: none;
+    }
+
+    .botao {
+        margin-top: 10px;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        background: rgb(188, 108, 191);
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+        align-self: center;
+    }
+
+    .botao:hover {
+        background: rgb(150, 80, 150);
+    }
+
+    .opcoes-login {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+
+    .lembrar {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: #ccc;
+        font-size: 15px;
+    }
+
+    .lembrar input {
+        cursor: pointer;
+    }
+
+    .esqueceu {
+        color: #ccc;
+        text-decoration: none;
+        font-size: 15px;
+    }
+
+    .esqueceu:hover {
+        text-decoration: underline;
+    }
+
+    .cadastro {
+        margin-top: 20px;
+        font-size: 15px;
+        color: #ccc;
+        text-align: center;
+    }
+
+    .cadastro a {
+        color: #863c7a;
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 18px;
+    }
+
+    .cadastro a:hover {
+        text-decoration: underline;
+    }
+
+    .botao {
+        background-color: rgb(188, 108, 191);
+        font-size: 17px;
+        color: white;
+        padding: 12px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-radius: 10px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+
+    }
+
+    .botao:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+
+    .card-cadastro {
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(10px);
+        border-radius: 50px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        color: white;
+        text-align: center;
+        padding: 10px 100px;
+        margin-top: 12px;
+
+
+    }
+
+    .card-cadastro h2 {
+        color: rgb(188, 108, 191);
+        font-size: 30px;
+        margin-bottom: 15px;
+    }
+
+    .card-quiz {
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(10px);
+        border-radius: 50px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        color: white;
+        text-align: center;
+        padding: 80px;
+        margin-top: 10px;
+        width: 90%;
+        max-width: 600px;
+        margin: 50px;
+
+    }
+
+    .card-quiz h2 {
+        color: rgb(188, 108, 191);
+        font-weight: 600;
+        border-bottom: 1px solid #333;
+        margin-top: 0;
+        font-size: 38px;
+        padding-bottom: 30px;
+    }
+
+    .quiz {
+        margin-top: 20px;
+        font-size: 21px;
+        color: #ccc;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .quiz h3 {
+        font-weight: 600;
+        font-size: 25px;
+    }
+
+    .btn {
+        background: #fffcfc;
+        color: #222;
+        font-weight: 600;
+        width: 100%;
+        border: 1px solid #222;
+        padding: 10px;
+        margin: 10px 0;
+        text-align: 40px;
+        text-align: left;
+        cursor: pointer;
+        transition: a11 0.3s;
+        font-size: 30px;
+        margin-top: 25px;
+        border-radius: 5px;
+    }
+
+    .btn:hover:not([disabled]) {
+        background: #8b4780;
+        color: white;
+    }
+
+    .btn:disabled {
+        cursor: no-drop;
+    }
+
+    #prox-btn {
+        background-color: rgb(188, 108, 191);
+        font-size: 23px;
+        color: white;
+        padding: 12px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-radius: 10px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 20px;
+        display: none;
+    }
+
+    .dashboard {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(180deg, #0b0d17 0%, #111428 100%);
+        color: rgb(255, 255, 255);
+        padding-top: 80px;
+      
+    }
+
+    .dashboard h1{
+        color: rgb(255, 255, 255);
+        font-size: 30px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .dashboard-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .chart-box {
+        background: rgb(188, 108, 191);
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        width: 45%;
+        min-width: 300px;
+        min-height: fit-content;
+    }
+
+    h3 {
+        text-align: center;
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+    }
