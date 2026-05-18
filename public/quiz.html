@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Portal Luan City | Quiz</title>
+
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" href="assets/icon/favicon2.ico">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+</head>
+
+<body>
+
+    <!--Header-->
+
+    <div class="header">
+        <h1 class="titulo">Portal Luan City</h1>
+        <ul class="navbar" id="navbar_ul">
+
+        </ul>
+    </div>
+
+    <div id="menu">
+
+        <h1>Quiz Luan Santana</h1>
+
+        <div class="cards">
+
+            <div class="card" onclick="AbrirQuiz('quiz1')">
+                <div class="imagem" style="background-image: url('https://noticiasdatv.uol.com.br/media/_versions/artigos_2021/luan-santana-record-especial-reproducao-grande_fixed_large.jpg')"></div>
+                <div class="conteudoQuiz">
+                    <h3>O quanto você conhece o Luan Santana?</h3>
+                    <p>Teste o quanto você é fã</p>
+                </div>
+            </div>
+
+            <div class="card" onclick="AbrirQuiz('quiz2')">
+                <div class="imagem" style="background-image: url('https://billboard.com.br/wp-content/uploads/2024/05/IMG_3206-3-2048x1451.jpg')"></div>
+                <div class="conteudoQuiz">
+                    <h3>Qual música do Luan Santana você é?</h3>
+                    <p>Descubra qual é a sua música</p>
+                </div>
+            </div>
+
+            <div class="card" onclick="AbrirQuiz('quiz3')">
+                <div class="imagem" style="background-image: url('https://shows.net.br/wp-content/uploads/2023/01/luan-santana-1.jpg')"></div>
+                <div class="conteudoQuiz">
+                    <h3>Divinhe a música do Luan Santana pelo trecho</h3>
+                    <p>Acerte as músicas lendo apenas uma frase</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="quiz" id="quiz1">
+        <h2>O quanto você conhece o Luan Santana?</h2>
+
+        <div class="pergunta">
+            <h3>1. Qual o nome completo dele?</h3>
+            <input type="radio" name="q1" value="0"> Luan Santana Domingos<br>
+            <input type="radio" name="q1" value="1"> Luan Rafael Domingos Santana<br>
+            <input type="radio" name="q1" value="0"> Luan Santana Rafael Domingos<br>
+            <input type="radio" name="q1" value="0"> Luan rafael Santana Domingos<br>
+        </div>
+
+        <div class="pergunta">
+            <h3>2. Qual foi o primeiro grande sucesso do Luan Santana?</h3>
+            <input type="radio" name="q2" value="1"> Meteoro<br>
+            <input type="radio" name="q2" value="0"> Te Esperando<br>
+            <input type="radio" name="q2" value="0"> Escreve Aí<br>
+            <input type="radio" name="q2" value="0"> Chuva de Arroz<br>
+        </div>
+
+        <div class="pergunta">
+            <h3>3. Seu primeiro show aconteceu quando ele tinha 16 anos, em 2007</h3>
+            <input type="radio" name="q3" value="1"> Verdadeiro<br>
+            <input type="radio" name="q3" value="0"> Falso<br>
+        </div>
+
+        <div class="pergunta">
+            <h3>4. Qual a idade do Luan Santana?</h3>
+            <input type="radio" name="q4" value="0"> 30 anos<br>
+            <input type="radio" name="q4" value="0"> 35 anos<br>
+            <input type="radio" name="q4" value="1"> 32 anos<br>
+            <input type="radio" name="q4" value="0"> 28 anos<br>
+        </div>
+
+        <div class="pergunta">
+            <h3>5. Qual a cidade que o Luan Santana nasceu?</h3>
+            <input type="radio" name="q5" value="0"> Curitiba<br>
+            <input type="radio" name="q5" value="0"> Mato Grosso<br>
+            <input type="radio" name="q5" value="0"> São Paulo<br>
+            <input type="radio" name="q5" value="1"> Campo Grande<br>
+        </div>
+
+        <button onclick="resultadoQuiz1()" type="submit">Finalizar...</button>
+        <button class="voltar" onclick="Voltarmenu('quiz1')">Voltar para o menu</button>
+    </div>
+
+    <div class="quiz" id="quiz2">
+        <h2>Qual música do Luan Santana você é?</h2>
+
+        <div class="pergunta">
+            <h3>1. Oque você mais gosta de fazer no seu tempo livre?</h3>
+            <select id="o1">
+                <option value="">Escolha uma opção:</option>
+
+                <option value="musica1">Ficar em casa descansando</option>
+                <option value="musica2">Sair com a minha família</option>
+                <option value="musica3">Sair com os meus amigos</option>
+                <option value="musica4">Ir fazer atividade física</option>
+            </select>
+
+            <h3>2. Como você reagiria a um termino de relacionamento?</h3>
+            <select id="o2">
+                <option value="">Escolha uma opção:</option>
+
+                <option value="musica1">Iria me trancar no meu quarto</option>
+                <option value="musica2">Iria procurar consolo</option>
+                <option value="musica3">Iria sair para distrair</option>
+                <option value="musica4">Iria conhecer outras pessoas</option>
+            </select>
+
+            <h3>3. Oque seus amigos dizem sobre você?</h3>
+            <select id="o3">
+                <option value="">Escolha uma opção:</option>
+
+                <option value="musica1">Que nunca quero fazer nada</option>
+                <option value="musica2">Que sempre estou animando</option>
+                <option value="musica3">Que sou uma amiga(o) muito parceira(o)</option>
+                <option value="musica4">Que sou confiável</option>
+            </select>
+
+            <h3>4. Qual futuro você planeja para sua vida?</h3>
+            <select id="o4">
+                <option value="">Escolha uma opção:</option>
+
+                <option value="musica1">Quero morar sozinha(o)</option>
+                <option value="musica2">Quero me casar e ter filhos</option>
+                <option value="musica3">Quero ter alguém para viajarmos o mundo juntos</option>
+                <option value="musica4">Quero morar com meus pais para sempre</option>
+            </select>
+
+            <h3>5. Qual seria o date perfeito na sua visão?</h3>
+            <select id="o5">
+                <option value="">Escolha uma opção:</option>
+
+                <option value="musica1">um parque ao ar livre</option>
+                <option value="musica2">Um restaurante chique</option>
+                <option value="musica3">Um bar com música ao vivo</option>
+                <option value="musica4">Um cinema calmo</option>
+            </select>
+
+            <button onclick="resultadoQuiz2()">Finalizar...</button>
+            <button class="voltar" onclick="Voltarmenu('quiz2')">Voltar para o menu</button>
+        </div>
+    </div>
+
+
+    <div class="quiz" id="quiz3">
+        <h2>Divinhe a música do Luan Santana pelo trecho</h2>
+
+        <div class="pergunta">
+            <h3>1. "Vou transformar decepção em novo começo..."</h3>
+            <input type="radio" name="a1" value="0"> Vingança<br>
+            <input type="radio" name="a1" value="1"> ILHA<br>
+            <input type="radio" name="a1" value="0"> Erro planejado<br>
+            <input type="radio" name="a1" value="0"> Morena<br>
+        </div>
+
+        <div class="pergunta">
+            <h3>2. "Se não servir cê joga fora,vai embora e diz que não deu..."</h3>
+            <input type="radio" name="a2" value="0"> CERTEZA<br>
+            <input type="radio" name="a2" value="0"> VIOLÃO<br>
+            <input type="radio" name="a2" value="1"> água com açúcar<br>
+            <input type="radio" name="a2" value="0"> choque térmico<br>
+        </div>
+
+        <div class="pergunta">
+            <h3>3. "Eu to na playlist do teu celular, escondido na história da música 3"</h3>
+            <input type="radio" name="a3" value="0"> Promete<br>
+            <input type="radio" name="a3" value="0"> ABALO EMOCIONAL<br>
+            <input type="radio" name="a3" value="0"> O Amor Coloriu<br>
+            <input type="radio" name="a3" value="1"> Mesmo sem Estar<br>
+        </div>
+
+        <div class="pergunta">
+            <h3>4. "Chego em casa dou de cara com sua foto.."</h3>
+            <input type="radio" name="a4" value="0"> Escreve Aí<br>
+            <input type="radio" name="a4" value="0"> MULHER SEGURA<br>
+            <input type="radio" name="a4" value="1"> Tanto Faz<br>
+            <input type="radio" name="a4" value="0"> Dia, lugar e hora<br>
+        </div>
+
+        <div class="pergunta">
+            <h3>5. "Eu te desejo tudo isso e muito mais, e muito mais..."</h3>
+            <input type="radio" name="a5" value="0"> SE ARREPENDIMENTO MATASSE<br>
+            <input type="radio" name="a5" value="0"> boa memória<br>
+            <input type="radio" name="a5" value="0"> Cantada<br>
+            <input type="radio" name="a5" value="1"> Tudo que você quiser<br>
+        </div>
+
+        <button onclick="resultadoQuiz3()">Finalizar...</button>
+        <button class="voltar" onclick="Voltarmenu('quiz3')">Voltar para o menu</button>
+    </div>
+
+
+    <!--footer inicio-->
+    <footer class="footer">
+        <div class="container-footer">
+            <p>Portal Luan City</p>
+            <div class="creditos">
+                <span>Feito com amor por aluna da SPtech</span>
+                <span class="version">v1.0.0</span>
+            </div>
+        </div>
+    </footer>
+
+    <!--footer fim-->
+
+    <script src="script.js"></script>
+
+    <script src="./assets/js/navbar.js"></script>
+    <script>
+        alterarNavbar()
+    </script>
+
+</body>
+<html>
+<script>
+    function AbrirQuiz(idQuiz) {
+        document.getElementById("menu").style.display = "none";
+
+        document.getElementById("quiz1").style.display = "none";
+        document.getElementById("quiz2").style.display = "none";
+        document.getElementById("quiz3").style.display = "none";
+
+        document.getElementById(idQuiz).style.display = "block";
+    }
+
+    function Voltarmenu(idQuiz) {
+        document.getElementById(idQuiz).style.display = "none";
+        document.getElementById("menu").style.display = "block";
+    }
+
+    function resultadoQuiz1() {
+        let pontos = 0
+
+        let q1 = document.querySelector('input[name="q1"]:checked');
+        let q2 = document.querySelector('input[name="q2"]:checked');
+        let q3 = document.querySelector('input[name="q3"]:checked');
+        let q4 = document.querySelector('input[name="q4"]:checked');
+        let q5 = document.querySelector('input[name="q5"]:checked');
+
+        if (!q1 || !q2 || !q3 || !q4 || !q5) {
+            alert("Responda todas as perguntas!");
+            return;
+        }
+
+        if (q1 && q1.value == '1') {
+            pontos++
+        }
+        if (q2 && q2.value == '1') {
+            pontos++
+        }
+        if (q3 && q3.value == '1') {
+            pontos++
+        }
+        if (q4 && q4.value == '1') {
+            pontos++
+        }
+        if (q5 && q5.value == '1') {
+            pontos++
+        }
+
+        alert('Vooê acertou ' + pontos + ' de 5 perguntas!')
+
+        Voltarmenu('quiz1')
+
+    }
+    function resultadoQuiz2() {
+
+        let o1 = document.querySelector('#o1').value;
+        let o2 = document.querySelector('#o2').value;
+        let o3 = document.querySelector('#o3').value;
+        let o4 = document.querySelector('#o4').value;
+        let o5 = document.querySelector('#o5').value;
+
+        if (!o1 || !o2 || !o3 || !o4 || !o5) {
+            alert("Responda todas as perguntas!");
+            return;
+        }
+
+        let pontos = {
+            musica1: 0,
+            musica2: 0,
+            musica3: 0,
+            musica4: 0,
+        };
+
+        pontos[o1]++;
+        pontos[o2]++;
+        pontos[o3]++;
+        pontos[o4]++;
+        pontos[o5]++;
+
+        let musicaFinal = "";
+        let maiorPontuacao = 0;
+
+        if (pontos.musica1 > maiorPontuacao) {
+            maiorPontuacao = pontos.musica1;
+            musicaFinal = "musica1";
+        }
+        if (pontos.musica2 > maiorPontuacao) {
+            maiorPontuacao = pontos.musica2;
+            musicaFinal = "musica2";
+        }
+        if (pontos.musica3 > maiorPontuacao) {
+            maiorPontuacao = pontos.musica3;
+            musicaFinal = "musica3";
+        }
+        if (pontos.musica4 > maiorPontuacao) {
+            maiorPontuacao = pontos.musica4;
+            musicaFinal = "musica4";
+        }
+
+        if (musicaFinal === "musica1") {
+            alert("Você é a música: Te esperando")
+        } else if (musicaFinal === "musica2") {
+            alert("Você é a música: ILHA")
+        } else if (musicaFinal === "musica3") {
+            alert("Você é a música: AMBIENTE ERRADO")
+        } else {
+            alert("Você é a música: mesmo sem estar")
+        }
+
+        Voltarmenu('quiz2')
+    }
+    function resultadoQuiz3() {
+        let pontos = 0
+
+        let a1 = document.querySelector('input[name="a1"]:checked');
+        let a2 = document.querySelector('input[name="a2"]:checked');
+        let a3 = document.querySelector('input[name="a3"]:checked');
+        let a4 = document.querySelector('input[name="a4"]:checked');
+        let a5 = document.querySelector('input[name="a5"]:checked');
+
+        if (!a1 || !a2 || !a3 || !a4 || !a5) {
+            alert("Responda todas as perguntas!");
+            return;
+        }
+
+        if (a1 && a1.value == '1') {
+            pontos++
+        }
+        if (a2 && a2.value == '1') {
+            pontos++
+        }
+        if (a3 && a3.value == '1') {
+            pontos++
+        }
+        if (a4 && a4.value == '1') {
+            pontos++
+        }
+        if (a5 && a5.value == '1') {
+            pontos++
+        }
+
+        alert('Vooê acertou ' + pontos + ' de 5 perguntas!')
+
+        Voltarmenu('quiz3')
+    }
+</script>
