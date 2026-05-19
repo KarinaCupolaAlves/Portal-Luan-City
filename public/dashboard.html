@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Portal Luan City | Dashboard</title>
+
+    <link rel="stylesheet" href="styles/style.css" />
+
+    <link rel="icon" href="assets/icon/favicon2.ico" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <!--header inicio-->
+    <div class="header">
+        <div class="container">
+            <h1 class="titulo">Portal Luan City</h1>
+            <ul class="navbar">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li><a href="quiz.html">Quiz</a></li>
+                <li><a href="dashboard.html">Dashboard</a>
+                </li>
+                <li>
+                    <a href="comunidade.html">Comunidade</a>
+                </li>
+                <div class="agora-line">
+                    <li>
+                        |
+                    </li>
+                </div>
+                <li>
+                    <a href="login.html">Login</a>
+                </li>
+                <li class="agora">
+                    <a href="#">Cadastro</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="dashboard">
+
+        <div class="kpis">
+
+            <div class="kpi">
+                <h2>ILHA</h2>
+                <p>Música que mais combina com você</p>
+            </div>
+
+            <div class="kpi">
+                <h2>Super fã</h2>
+                <p>Seu nível de fã</p>
+            </div>
+            <div class="kpi">
+                <h2>80%</h2>
+                <p>aproveitamento nos quizzes</p>
+            </div>
+            <div class="kpi">
+                <h2>Romântico</h2>
+                <p>Seu estilo dominante</p>
+            </div>
+        </div>
+
+        <div class="graficosDash">
+
+            <div class="grafico">
+                <canvas id="graficoBarra"></canvas>
+            </div>
+            <div class="grafico">
+                <canvas id="graficoDonuts"></canvas>
+            </div>
+            <div class="grafico">
+                <canvas id="graficoRadar"></canvas>
+            </div>
+            <div class="grafico">
+                <canvas id="graficoLinha"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container-footer">
+            <p>Portal Luan City</p>
+            <div class="creditos">
+                <span>Feito com amor por aluna da SPtech</span>
+                <span class="version">v1.0.0</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
+<script>
+
+    let nomesMusicas = [
+        'ILHA',
+        'Te Esperando',
+        'Ambiente Errado',
+        'Mesmo sem estar'
+    ];
+
+    let afinidadeUsuario = [9, 5, 7, 4];
+
+    let graficoMusical =
+        document.getElementById("graficoBarra");
+
+    new Chart(graficoMusical, {
+
+        type: 'bar',
+
+        data: {
+
+            labels: nomesMusicas,
+
+            datasets: [{
+
+                label: 'Compatibilidade musical',
+
+                data: afinidadeUsuario,
+
+                backgroundColor: [
+                    '#955a97',
+                    '#b86cbf',
+                    '#d8a5dd',
+                    '#7b4a7f'
+                ]
+            }]
+        }
+    });
+
+    let ConhecimentoUser = [
+        'Super fã',
+        'Fã casual'
+    ];
+
+    let Porcentagem = [80, 20];
+
+    let graficoMusica =
+        document.getElementById("graficoDonuts");
+
+    new Chart(graficoMusica, {
+
+        type: 'doughnut',
+
+        data: {
+
+            labels: ConhecimentoUser,
+
+            datasets: [{
+
+                label: 'Compatibilidade musical',
+
+                data: Porcentagem,
+
+                backgroundColor: [
+                    '#955a97',
+                    '#d8a5dd'
+                ]
+            }]
+        }
+    });
+
+    let Perfilemocional = [
+        'Romântico',
+        'Animado',
+        'Emotivo',
+        'Sofredor',
+        'Caseiro'
+    ];
+
+    let Nivel = [9, 6, 8, 7, 5];
+
+    let graficoEmocional =
+        document.getElementById("graficoRadar");
+
+    new Chart(graficoEmocional, {
+
+        type: 'radar',
+
+        data: {
+
+            labels: Perfilemocional,
+
+            datasets: [{
+
+                label: 'Seu Perfil',
+
+                data: Nivel,
+
+                backgroundColor:
+                    'rgba(149,90,151,0.2)',
+
+                borderColor: '#955a97',
+
+                borderWidth: 2
+            }]
+        }
+    });
+
+    let AcertosQuiz = [
+        'Quiz 1',
+        'Quiz 2',
+        'Quiz 3'
+    ];
+
+    let pontuacao = [5, 4, 3];
+
+    let graficoPontos =
+        document.getElementById("graficoLinha");
+
+    new Chart(graficoPontos, {
+
+        type: 'line',
+
+        data: {
+
+            labels: AcertosQuiz,
+
+            datasets: [{
+
+                label: 'Seu desempenho',
+
+                data: pontuacao,
+
+                borderColor: '#955a97',
+
+                tension: 0.3
+            }]
+        }
+    });
+</script>
