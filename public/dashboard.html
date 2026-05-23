@@ -20,32 +20,11 @@
 <body>
     <!--header inicio-->
     <div class="header">
-        <div class="container">
-            <h1 class="titulo">Portal Luan City</h1>
-            <ul class="navbar">
-                <li>
-                    <a href="index.html">Home</a>
-                </li>
-                <li><a href="quiz.html">Quiz</a></li>
-                <li><a href="dashboard.html">Dashboard</a>
-                </li>
-                <li>
-                    <a href="comunidade.html">Comunidade</a>
-                </li>
-                <div class="agora-line">
-                    <li>
-                        |
-                    </li>
-                </div>
-                <li>
-                    <a href="login.html">Login</a>
-                </li>
-                <li class="agora">
-                    <a href="#">Cadastro</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <h1 class="titulo">Portal Luan City</h1>
+    <ul class="navbar" id="navbar_ul">
+
+    </ul>
+  </div>
 
     <div class="dashboard">
 
@@ -96,11 +75,14 @@
             </div>
         </div>
     </footer>
+    <script src="./assets/js/navbar.js"></script>
 
 </body>
 
 </html>
+
 <script>
+      alterarNavbar()
 
     let nomesMusicas = [
         'ILHA',

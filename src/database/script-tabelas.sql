@@ -6,40 +6,34 @@
 comandos para mysql server
 */
 
-CREATE DATABASE aquatech;
+CREATE DATABASE luan_city;
 
-USE aquatech;
-
-CREATE TABLE empresa (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	razao_social VARCHAR(50),
-	cnpj CHAR(14),
-	codigo_ativacao VARCHAR(50)
-);
+USE luan_city;
 
 CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+	id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(45),
+	emai VARCHAR(45),
+	senha VARCHAR(45),
+	dt_nasc DATE
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+CREATE TABLE quiz (
+	idQuiz INT PRIMARY KEY AUTO_INCREMENT,
+	nomeQuiz VARCHAR(100)
 );
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+CREATE TABLE resultadoQuiz(
+idResultado INT PRIMARY KEY AUTO_INCREMENT,
+fk_usuario INT,
+fkQuiz INT,
+pontuação INT,
+resultado_final VARCHAR(100),
+dt_quiz DATETIME,
+FOREIGN KEY(fk_usuario)
+REFERENCES usuario(id_usuario),
+FOREIGN KEY(fkQuiz)
+REFERENCES quiz(idQuiz)
 );
 
 /* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */

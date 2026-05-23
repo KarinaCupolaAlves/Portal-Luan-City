@@ -31,7 +31,9 @@
         <div class="cards">
 
             <div class="card" onclick="AbrirQuiz('quiz1')">
-                <div class="imagem" style="background-image: url('https://noticiasdatv.uol.com.br/media/_versions/artigos_2021/luan-santana-record-especial-reproducao-grande_fixed_large.jpg')"></div>
+                <div class="imagem"
+                    style="background-image: url('https://noticiasdatv.uol.com.br/media/_versions/artigos_2021/luan-santana-record-especial-reproducao-grande_fixed_large.jpg')">
+                </div>
                 <div class="conteudoQuiz">
                     <h3>O quanto você conhece o Luan Santana?</h3>
                     <p>Teste o quanto você é fã</p>
@@ -39,7 +41,9 @@
             </div>
 
             <div class="card" onclick="AbrirQuiz('quiz2')">
-                <div class="imagem" style="background-image: url('https://billboard.com.br/wp-content/uploads/2024/05/IMG_3206-3-2048x1451.jpg')"></div>
+                <div class="imagem"
+                    style="background-image: url('https://billboard.com.br/wp-content/uploads/2024/05/IMG_3206-3-2048x1451.jpg')">
+                </div>
                 <div class="conteudoQuiz">
                     <h3>Qual música do Luan Santana você é?</h3>
                     <p>Descubra qual é a sua música</p>
@@ -47,9 +51,11 @@
             </div>
 
             <div class="card" onclick="AbrirQuiz('quiz3')">
-                <div class="imagem" style="background-image: url('https://shows.net.br/wp-content/uploads/2023/01/luan-santana-1.jpg')"></div>
+                <div class="imagem"
+                    style="background-image: url('https://shows.net.br/wp-content/uploads/2023/01/luan-santana-1.jpg')">
+                </div>
                 <div class="conteudoQuiz">
-                    <h3>Divinhe a música do Luan Santana pelo trecho</h3>
+                    <h3>Adivinhe a música do Luan Santana pelo trecho</h3>
                     <p>Acerte as músicas lendo apenas uma frase</p>
                 </div>
             </div>
@@ -131,7 +137,7 @@
                 <option value="">Escolha uma opção:</option>
 
                 <option value="musica1">Que nunca quero fazer nada</option>
-                <option value="musica2">Que sempre estou animando</option>
+                <option value="musica2">Que sempre estou animado</option>
                 <option value="musica3">Que sou uma amiga(o) muito parceira(o)</option>
                 <option value="musica4">Que sou confiável</option>
             </select>
@@ -283,15 +289,19 @@
         Voltarmenu('quiz1')
 
     }
-    function resultadoQuiz2() {
 
-        let o1 = document.querySelector('#o1').value;
-        let o2 = document.querySelector('#o2').value;
-        let o3 = document.querySelector('#o3').value;
-        let o4 = document.querySelector('#o4').value;
-        let o5 = document.querySelector('#o5').value;
+    async function resultadoQuiz2() {
+        let idUsuario = sessionStorage.ID_USUARIO;
 
-        if (!o1 || !o2 || !o3 || !o4 || !o5) {
+        let respostas = [
+            document.getElementById("o1").value,
+            document.getElementById("o2").value,
+            document.getElementById("o3").value,
+            document.getElementById("o4").value,
+            document.getElementById("o5").value
+        ];
+
+        if (respostas.includes("")) {
             alert("Responda todas as perguntas!");
             return;
         }
@@ -300,47 +310,74 @@
             musica1: 0,
             musica2: 0,
             musica3: 0,
-            musica4: 0,
-        };
+            musica4: 0
+        }
 
-        pontos[o1]++;
-        pontos[o2]++;
-        pontos[o3]++;
-        pontos[o4]++;
-        pontos[o5]++;
+        for (let i = 0; i < respostas.length; i++) {
+            pontos[respostas[i]]++;
+        }
 
-        let musicaFinal = "";
-        let maiorPontuacao = 0;
+        let musicaFinal = ""
 
-        if (pontos.musica1 > maiorPontuacao) {
-            maiorPontuacao = pontos.musica1;
+        if(pontos.musica1 >= pontos.musica2 &&
+            pontos.musica1 >= pontos.musica3 &&
+            pontos.musica1 >= pontos.musica4
+        ){
             musicaFinal = "musica1";
         }
-        if (pontos.musica2 > maiorPontuacao) {
-            maiorPontuacao = pontos.musica2;
+        if(pontos.musica2 >= pontos.musica1 &&
+            pontos.musica2 >= pontos.musica3 &&
+            pontos.musica2 >= pontos.musica4
+        ){
             musicaFinal = "musica2";
         }
-        if (pontos.musica3 > maiorPontuacao) {
-            maiorPontuacao = pontos.musica3;
+        if(pontos.musica3 >= pontos.musica1 &&
+            pontos.musica3 >= pontos.musica2 &&
+            pontos.musica3 >= pontos.musica4
+        ){
             musicaFinal = "musica3";
         }
-        if (pontos.musica4 > maiorPontuacao) {
-            maiorPontuacao = pontos.musica4;
+        if(pontos.musica4 >= pontos.musica1 &&
+            pontos.musica4 >= pontos.musica2 &&
+            pontos.musica4 >= pontos.musica3
+        ){
             musicaFinal = "musica4";
         }
 
-        if (musicaFinal === "musica1") {
-            alert("Você é a música: Te esperando")
-        } else if (musicaFinal === "musica2") {
-            alert("Você é a música: ILHA")
-        } else if (musicaFinal === "musica3") {
-            alert("Você é a música: AMBIENTE ERRADO")
-        } else {
-            alert("Você é a música: mesmo sem estar")
-        }
+        let resultado = await fetch("/quiz/salvar_musica", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                teEsperandoServer: pontos.musica1,
+                ilhaServer: pontos.musica2,
+                ambienteErradoServer: pontos.musica3,
+                mesmoSemEstarServer: pontos.musica4,
+                idUsuarioServer: idUsuario
+            })
+        })
 
-        Voltarmenu('quiz2')
+        if (resultado.ok) {
+            console.log("musica salva");
+
+            if (musicaFinal === "musica1") {
+                alert("Você é a música: Te esperando")
+            } else if (musicaFinal === "musica2") {
+                alert("Você é a música: ILHA")
+            } else if (musicaFinal === "musica3") {
+                alert("Você é a música: AMBIENTE ERRADO")
+            } else {
+                alert("Você é a música: mesmo sem estar")
+            }
+
+            Voltarmenu('quiz2')
+        } else {
+            alert("Deu errado");
+        }
     }
+
+    
     function resultadoQuiz3() {
         let pontos = 0
 

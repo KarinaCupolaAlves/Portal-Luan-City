@@ -335,6 +335,19 @@ a {
     margin-top: 5px;
 }
 
+.cardErro{
+    position: absolute;
+    top: 15%;
+    right: 2%;
+    background-color: white;
+    color: red;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    width: 20%;
+    min-height: 200px;
+}
+
 /* LOGIN */
 .login {
     display: flex;
@@ -416,6 +429,8 @@ a {
     justify-content: space-between;
     font-size: 12px;
     color: white;
+    margin-bottom: 20px;
+    font-size: 14px;
 }
 
 .opcoes-login a {
@@ -424,106 +439,92 @@ a {
 }
 
 /* CADASTRO */
-.cadastro a {
-    color: rgb(188, 108, 191);
-    text-decoration: none;
-}
-
-.botao {
-    margin-top: 10px;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    background: rgb(188, 108, 191);
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-    align-self: center;
-}
-
-.botao:hover {
-    background: rgb(150, 80, 150);
-}
-
-.opcoes-login {
+.cadastro {
     display: flex;
-    justify-content: space-between;
+    background-image: url('../assets/imgs/Luan-Santana7.webp');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
     align-items: center;
-    margin-bottom: 20px;
-    font-size: 14px;
-}
-
-.lembrar {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    color: #ccc;
-    font-size: 15px;
-}
-
-.lembrar input {
-    cursor: pointer;
-}
-
-.esqueceu {
-    color: #ccc;
-    text-decoration: none;
-    font-size: 15px;
-}
-
-.esqueceu:hover {
-    text-decoration: underline;
-}
-
-.cadastro a {
-    color: #863c7a;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 18px;
-}
-
-.cadastro a:hover {
-    text-decoration: underline;
-}
-
-.botaocaCadastro {
-    background-color: rgb(188, 108, 191);
-    font-size: 17px;
-    color: white;
-    padding: 12px;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-radius: 10px;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s;
-
-}
-
-.botaoCadastro:hover {
-    transform: scale(1.05);
-    opacity: 0.9;
+    justify-content: center;
+    padding: 40px 20px;
 }
 
 .card-cadastro {
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
-    border-radius: 50px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    color: white;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(12px);
+    border-radius: 25px;
     text-align: center;
-    padding: 10px 100px;
-    margin-top: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6); 
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
+    padding: 35px 0;
+}
 
+.formularioCadastro {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
 }
 
 .card-cadastro h2 {
     color: rgb(188, 108, 191);
-    font-size: 30px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+.cadastro a {
+    color: rgb(188, 108, 191);
+    text-decoration: none;
+}
+
+.campoC {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 5px;
+}
+
+
+.campoC span {
+    color: rgb(188, 108, 191);
+    font-weight: bold;
+    margin-bottom: 6px;
+    font-size: 13px;
+}
+
+.campoC input {
+    padding: 12px;
+    border-radius: 10px;
+    outline: none;
+    border: 2px solid rgb(151, 67, 151);
+    font-size: 14px;
+    width: 100%;
+    background: white;
+}
+
+.botao-cadastro {
+    margin-top: 10px;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: rgb(188, 108, 191);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botao-cadastro:hover {
+    background: rgb(160, 80, 165);
+    transform: scale(1.03);
 }
 
 /*  QUIZ */
@@ -550,7 +551,7 @@ a {
 
 .card {
     width: 300px;
-    background-color: rgb(173, 117, 169);
+    background-color: rgb(255, 255, 255);
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
