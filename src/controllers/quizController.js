@@ -42,7 +42,47 @@ function salvarPersonalidade(req, res) {
             res.status(500).json(erro.sqlMessage);
         })
 }
+
+function salvarNivel(req, res) {
+    let pontos = req.body.pontosServer
+    let dt_quiz = req.body.dtQuizServer
+    let idUsuario = req.body.idUsuarioServer
+
+    quizModel.salvarNivel(pontos, dt_quiz, idUsuario)
+        .then(function (resposta) {
+            res.json(resposta)
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            console.log(
+                "\nHouve um erro ao salvar a pontuacao! Erro: ",
+                erro.sqlMessage
+            );
+            res.status(500).json(erro.sqlMessage);
+        })
+}
+
+function salvarPontos(req, res) {
+    let pontos = req.body.pontosServer
+    let dt_quiz = req.body.dtQuizServer
+    let idUsuario = req.body.idUsuarioServer
+
+    quizModel.salvarPontos(pontos, dt_quiz, idUsuario)
+        .then(function (resposta) {
+            res.json(resposta)
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            console.log(
+                "\nHouve um erro ao salvar a pontuacao! Erro: ",
+                erro.sqlMessage
+            );
+            res.status(500).json(erro.sqlMessage);
+        })
+}
 module.exports = {
     salvarMusica,
-    salvarPersonalidade
+    salvarPersonalidade,
+    salvarNivel,
+    salvarPontos
 }

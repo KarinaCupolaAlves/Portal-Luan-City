@@ -20,10 +20,29 @@ function salvarPersonalidade(pontos_romantico, pontos_animado, pontos_emotivo, p
     return database.executar(instrucaoSql);
 }
 
+function salvarNivel(pontos, dt_quiz, idUsuario) {
+    console.log("ACESSEI O QUIZ MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function salvarNivel():")
+    var instrucaoSql = `
+        INSERT INTO usuarioNivelFa(pontos,dt_quiz,fk_usuario)VALUES
+        (${pontos}),${dt_quiz},${idUsuario})`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function salvarPontos(pontos, dt_quiz, idUsuario) {
+    console.log("ACESSEI O QUIZ MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function salvarPontos():")
+    var instrucaoSql = `
+        INSERT INTO usuario_pontuacao(pontos,dt_quiz,fk_usuario)VALUES
+        (${pontos}),${dt_quiz},${idUsuario})`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
 module.exports = {
     salvarMusica,
-    salvarPersonalidade
+    salvarPersonalidade,
+    salvarNivel,
+    salvarPontos
 };
 
 

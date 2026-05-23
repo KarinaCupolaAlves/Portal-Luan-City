@@ -254,7 +254,9 @@
         document.getElementById("menu").style.display = "block";
     }
 
-    function resultadoQuiz1() {
+    async function resultadoQuiz1() {
+
+        let idusuario = sessionStorage.ID_USUARIO;
         let pontos = 0
 
         let q1 = document.querySelector('input[name="q1"]:checked');
@@ -284,10 +286,28 @@
             pontos++
         }
 
-        alert('Vooê acertou ' + pontos + ' de 5 perguntas!')
+        let resposta = await fetch("/quiz/salvarNivel", {
+            method: "POST",
 
-        Voltarmenu('quiz1')
+            headers: {
+                "Content-type": "application/json"
+            },
 
+            body: JSON.stringify({
+                pontosServer: pontos,
+                dtQuizServer: dt_quiz,
+                idUsuario: idUsuario
+            })
+        })
+
+        if (resposta.ok) {
+
+            alert('Vooê acertou ' + pontos + ' de 5 perguntas!')
+
+            Voltarmenu('quiz1')
+        } else {
+            alert("Erro ao salvar quiz 1");
+        }
     }
 
     async function resultadoQuiz2() {
@@ -319,28 +339,28 @@
 
         let musicaFinal = ""
 
-        if(pontos.musica1 >= pontos.musica2 &&
+        if (pontos.musica1 >= pontos.musica2 &&
             pontos.musica1 >= pontos.musica3 &&
             pontos.musica1 >= pontos.musica4
-        ){
+        ) {
             musicaFinal = "musica1";
         }
-        if(pontos.musica2 >= pontos.musica1 &&
+        if (pontos.musica2 >= pontos.musica1 &&
             pontos.musica2 >= pontos.musica3 &&
             pontos.musica2 >= pontos.musica4
-        ){
+        ) {
             musicaFinal = "musica2";
         }
-        if(pontos.musica3 >= pontos.musica1 &&
+        if (pontos.musica3 >= pontos.musica1 &&
             pontos.musica3 >= pontos.musica2 &&
             pontos.musica3 >= pontos.musica4
-        ){
+        ) {
             musicaFinal = "musica3";
         }
-        if(pontos.musica4 >= pontos.musica1 &&
+        if (pontos.musica4 >= pontos.musica1 &&
             pontos.musica4 >= pontos.musica2 &&
             pontos.musica4 >= pontos.musica3
-        ){
+        ) {
             musicaFinal = "musica4";
         }
 
@@ -367,7 +387,7 @@
                 alert("Você é a música: ILHA")
             } else if (musicaFinal === "musica3") {
                 alert("Você é a música: AMBIENTE ERRADO")
-            } else {
+            } else if (musicaFinal === "musica4") {
                 alert("Você é a música: mesmo sem estar")
             }
 
@@ -377,7 +397,7 @@
         }
     }
 
-    
+
     function resultadoQuiz3() {
         let pontos = 0
 
@@ -407,6 +427,8 @@
         if (a5 && a5.value == '1') {
             pontos++
         }
+
+                
 
         alert('Vooê acertou ' + pontos + ' de 5 perguntas!')
 
