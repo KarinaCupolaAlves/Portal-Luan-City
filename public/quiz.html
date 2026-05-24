@@ -229,8 +229,6 @@
 
     <!--footer fim-->
 
-    <script src="script.js"></script>
-
     <script src="./assets/js/navbar.js"></script>
     <script>
         alterarNavbar()
@@ -256,7 +254,7 @@
 
     async function resultadoQuiz1() {
 
-        let idusuario = sessionStorage.ID_USUARIO;
+        let idUsuario = sessionStorage.ID_USUARIO;
         let pontos = 0
 
         let q1 = document.querySelector('input[name="q1"]:checked');
@@ -286,7 +284,7 @@
             pontos++
         }
 
-        let resposta = await fetch("/quiz/salvarNivel", {
+        let resultado = await fetch("/quiz/salvar_nivel", {
             method: "POST",
 
             headers: {
@@ -295,12 +293,10 @@
 
             body: JSON.stringify({
                 pontosServer: pontos,
-                dtQuizServer: dt_quiz,
-                idUsuario: idUsuario
+                idUsuarioServer: idUsuario
             })
         })
-
-        if (resposta.ok) {
+        if (resultado.ok) {
 
             alert('Vooê acertou ' + pontos + ' de 5 perguntas!')
 
@@ -308,6 +304,7 @@
         } else {
             alert("Erro ao salvar quiz 1");
         }
+
     }
 
     async function resultadoQuiz2() {
@@ -398,7 +395,9 @@
     }
 
 
-    function resultadoQuiz3() {
+    async function resultadoQuiz3() {
+
+        let idUsuario = sessionStorage.ID_USUARIO;
         let pontos = 0
 
         let a1 = document.querySelector('input[name="a1"]:checked');
@@ -428,10 +427,24 @@
             pontos++
         }
 
-                
+        let resultado = await fetch("/quiz/salvar_pontos", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
 
-        alert('Vooê acertou ' + pontos + ' de 5 perguntas!')
+            body: JSON.stringify({
+                pontosServer: pontos,
+                idUsuarioServer: idUsuario
+            })
+        });
 
-        Voltarmenu('quiz3')
+        if (resultado.ok) {
+            alert('Vooê acertou ' + pontos + ' de 5 perguntas!')
+
+            Voltarmenu('quiz3')
+        } else {
+            alert("Erro ao salvar quiz 3");
+        }
     }
 </script>

@@ -20,11 +20,11 @@
 <body>
     <!--header inicio-->
     <div class="header">
-    <h1 class="titulo">Portal Luan City</h1>
-    <ul class="navbar" id="navbar_ul">
+        <h1 class="titulo">Portal Luan City</h1>
+        <ul class="navbar" id="navbar_ul">
 
-    </ul>
-  </div>
+        </ul>
+    </div>
 
     <div class="dashboard">
 
@@ -82,142 +82,154 @@
 </html>
 
 <script>
-      alterarNavbar()
+    alterarNavbar()
 
-    let nomesMusicas = [
-        'ILHA',
-        'Te Esperando',
-        'Ambiente Errado',
-        'Mesmo sem estar'
-    ];
+    let idUsuario = sessionStorage.ID_USUARIO;
 
-    let afinidadeUsuario = [9, 5, 7, 4];
+    BuscarDados(idUsuario);
 
-    let graficoMusical =
-        document.getElementById("graficoBarra");
+    async function BuscarDados(idUsuario) {
 
-    new Chart(graficoMusical, {
+        let resultado = await fetch(`/dashboard/BuscarDados/${idUsuario}`)
+        let dados = await resultado.json();
+        let usuario = dados[0];
+        carregarGraficos(usuario);
+    }
 
-        type: 'bar',
+    function carregarGraficos(usuario) {
 
-        data: {
+        let nomesMusicas = [
+            'ILHA',
+            'Te Esperando',
+            'Ambiente Errado',
+            'Mesmo sem estar'
+        ];
 
-            labels: nomesMusicas,
+        let afinidadeUsuario = [
+            usuario.ilha,
+            usuario.te_esperando,
+            usuario.ambiente_errado,
+            usuario.mesmo_sem_estar
+        ];
+        new Chart(document.getElementById("graficoBarra"), {
 
-            datasets: [{
+            type: 'bar',
 
-                label: 'Compatibilidade musical',
+            data: {
+                labels: nomesMusicas,
 
-                data: afinidadeUsuario,
+                datasets: [{
+                    label: 'Compatibilidade musical',
 
-                backgroundColor: [
-                    '#955a97',
-                    '#b86cbf',
-                    '#d8a5dd',
-                    '#7b4a7f'
-                ]
-            }]
-        }
-    });
+                    data: afinidadeUsuario,
 
-    let ConhecimentoUser = [
-        'Super fã',
-        'Fã casual'
-    ];
+                    backgroundColor: [
+                        '#955a97',
+                        '#b86cbf',
+                        '#d8a5dd',
+                        '#7b4a7f'
+                    ]
+                }]
+            }
+        });
 
-    let Porcentagem = [80, 20];
+        let ConhecimentoUser = [
+            'Super fã',
+            'Fã casual'
+        ];
 
-    let graficoMusica =
-        document.getElementById("graficoDonuts");
+        let porcentagem = usuario.quiz1 * 20;
 
-    new Chart(graficoMusica, {
+        new Chart (document.getElementById("graficoDonuts"), {
+            type: 'doughnut',
 
-        type: 'doughnut',
+            data: {
 
-        data: {
+                labels: ['Acertos', 'Erros'],
 
-            labels: ConhecimentoUser,
+                datasets: [{
 
-            datasets: [{
+                    data: [porcentagem, 100 - porcentagem],
 
-                label: 'Compatibilidade musical',
+                    backgroundColor: [
+                        '#955a97',
+                        '#d8a5dd'
+                    ]
+                }]
+            }
+        });
 
-                data: Porcentagem,
+        let Perfilemocional = [
+            'Romântico',
+            'Animado',
+            'Emotivo',
+            'Sofredor',
+            'Caseiro'
+        ];
 
-                backgroundColor: [
-                    '#955a97',
-                    '#d8a5dd'
-                ]
-            }]
-        }
-    });
+        let Nivel = [
+            usuario.romantico,
+            usuario.animado,
+            usuario.emotivo,
+            usuario.sofredor,
+            usuario.caseiro
+        ];
 
-    let Perfilemocional = [
-        'Romântico',
-        'Animado',
-        'Emotivo',
-        'Sofredor',
-        'Caseiro'
-    ];
+        
+        new Chart (document.getElementById("graficoRadar"), {
 
-    let Nivel = [9, 6, 8, 7, 5];
+            type: 'radar',
 
-    let graficoEmocional =
-        document.getElementById("graficoRadar");
+            data: {
 
-    new Chart(graficoEmocional, {
+                labels: Perfilemocional,
 
-        type: 'radar',
+                datasets: [{
 
-        data: {
+                    label: 'Seu Perfil',
 
-            labels: Perfilemocional,
+                    data: Nivel,
 
-            datasets: [{
+                    backgroundColor:
+                        'rgba(149,90,151,0.2)',
 
-                label: 'Seu Perfil',
+                    borderColor: '#955a97',
 
-                data: Nivel,
+                    borderWidth: 2
+                }]
+            }
+        });
 
-                backgroundColor:
-                    'rgba(149,90,151,0.2)',
+        let AcertosQuiz = [
+            'Quiz 1',
+            'Quiz 2',
+            'Quiz 3'
+        ];
 
-                borderColor: '#955a97',
+        let pontuacao = [
+            usuario.quiz1,
+            usuario.quiz3
+        ];
 
-                borderWidth: 2
-            }]
-        }
-    });
+        new Chart(document.getElementById("graficoLinha"), {
 
-    let AcertosQuiz = [
-        'Quiz 1',
-        'Quiz 2',
-        'Quiz 3'
-    ];
+            type: 'line',
 
-    let pontuacao = [5, 4, 3];
+            data: {
 
-    let graficoPontos =
-        document.getElementById("graficoLinha");
+                labels: ['Quiz 1','Quiz 3'],
 
-    new Chart(graficoPontos, {
+                datasets: [{
 
-        type: 'line',
+                    label: 'Pontuação',
 
-        data: {
+                    data: [usuario.pontos_quiz3],
 
-            labels: AcertosQuiz,
+                    borderColor: '#955a97',
 
-            datasets: [{
-
-                label: 'Seu desempenho',
-
-                data: pontuacao,
-
-                borderColor: '#955a97',
-
-                tension: 0.3
-            }]
-        }
-    });
+                    tension: 0.3
+                }]
+            }
+        });
+    }
 </script>

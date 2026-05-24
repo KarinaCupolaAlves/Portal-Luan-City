@@ -45,10 +45,9 @@ function salvarPersonalidade(req, res) {
 
 function salvarNivel(req, res) {
     let pontos = req.body.pontosServer
-    let dt_quiz = req.body.dtQuizServer
     let idUsuario = req.body.idUsuarioServer
 
-    quizModel.salvarNivel(pontos, dt_quiz, idUsuario)
+    quizModel.salvarNivel(pontos, idUsuario)
         .then(function (resposta) {
             res.json(resposta)
         })
@@ -64,10 +63,9 @@ function salvarNivel(req, res) {
 
 function salvarPontos(req, res) {
     let pontos = req.body.pontosServer
-    let dt_quiz = req.body.dtQuizServer
     let idUsuario = req.body.idUsuarioServer
 
-    quizModel.salvarPontos(pontos, dt_quiz, idUsuario)
+    quizModel.salvarPontos(pontos, idUsuario)
         .then(function (resposta) {
             res.json(resposta)
         })
