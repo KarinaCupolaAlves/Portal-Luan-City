@@ -388,6 +388,21 @@
                 alert("Você é a música: mesmo sem estar")
             }
 
+
+            let resultadoPersonalidade = await fetch("/quiz/salvar_personalidade", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    romanticoServer: // CALCULAR PONTOS,
+                    animadoServer: // CALCULAR PONTOS,
+                    emotivoServer: // CALCULAR PONTOS,
+                    sofredorServer: // CALCULAR PONTOS,
+                    caseiroServer: idUsuario
+                })
+            })
+
             Voltarmenu('quiz2')
         } else {
             alert("Deu errado");

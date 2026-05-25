@@ -31,16 +31,16 @@
         <div class="kpis">
 
             <div class="kpi">
-                <h2>ILHA</h2>
+                <h2 id="usuario_musica">ILHA</h2>
                 <p>Música que mais combina com você</p>
             </div>
 
             <div class="kpi">
-                <h2>Super fã</h2>
+                <h2 id="usuario_nivel_fa">Super fã</h2>
                 <p>Seu nível de fã</p>
             </div>
             <div class="kpi">
-                <h2>80%</h2>
+                <h2 id="usuario_aproveitamento">80%</h2>
                 <p>aproveitamento nos quizzes</p>
             </div>
             <div class="kpi">
@@ -86,15 +86,22 @@
 
     let idUsuario = sessionStorage.ID_USUARIO;
 
-    BuscarDados(idUsuario);
+    window.onload = BuscarDados(idUsuario);
+
+    let graficoBarra;
+    let graficoDonuts;
+    let graficoRadar;
+    let graficoLinha;
 
     async function BuscarDados(idUsuario) {
 
         let resultado = await fetch(`/dashboard/BuscarDados/${idUsuario}`)
         let dados = await resultado.json();
         let usuario = dados[0];
+    
         carregarGraficos(usuario);
-    }
+   
+}
 
     function carregarGraficos(usuario) {
 
@@ -111,18 +118,15 @@
             usuario.ambiente_errado,
             usuario.mesmo_sem_estar
         ];
-        new Chart(document.getElementById("graficoBarra"), {
 
+
+        graficoBarra = new Chart(document.getElementById("graficoBarra"), {
             type: 'bar',
-
             data: {
                 labels: nomesMusicas,
-
                 datasets: [{
                     label: 'Compatibilidade musical',
-
                     data: afinidadeUsuario,
-
                     backgroundColor: [
                         '#955a97',
                         '#b86cbf',
@@ -138,19 +142,23 @@
             'Fã casual'
         ];
 
-        let porcentagem = usuario.quiz1 * 20;
+        let porcentagem = ((usuario.quiz1 + usuario.quiz3) / 10) * 100;
 
-        new Chart (document.getElementById("graficoDonuts"), {
-            type: 'doughnut',
+        if (porcentagem > 60) {
+            usuario_nivel_fa.innerHTML = "Super fã"
+        } else {
+            usuario_nivel_fa.innerHTML = "Fã comum"
+        }
+        usuario_aproveitamento.innerHTML = porcentagem + "%"
 
+
+        graficoDonuts = new Chart(document.getElementById("graficoDonuts"), {
+            type: 'bar',
             data: {
-
-                labels: ['Acertos', 'Erros'],
-
+                labels: ["Quiz 1", "Quiz 3"],
                 datasets: [{
-
-                    data: [porcentagem, 100 - porcentagem],
-
+                    label: "Aprovaitamento dos quizzes",
+                    data: [(usuario.quiz1 / 5 * 100), (usuario.quiz3 / 5 * 100)],
                     backgroundColor: [
                         '#955a97',
                         '#d8a5dd'
@@ -175,61 +183,50 @@
             usuario.caseiro
         ];
 
-        
-        new Chart (document.getElementById("graficoRadar"), {
 
+        graficoRadar = new Chart(document.getElementById("graficoRadar"), {
             type: 'radar',
-
             data: {
-
                 labels: Perfilemocional,
-
                 datasets: [{
-
                     label: 'Seu Perfil',
-
                     data: Nivel,
-
                     backgroundColor:
                         'rgba(149,90,151,0.2)',
-
-                    borderColor: '#955a97',
-
+                    borderColor: '#955a97',     
                     borderWidth: 2
                 }]
             }
         });
 
-        let AcertosQuiz = [
-            'Quiz 1',
-            'Quiz 2',
-            'Quiz 3'
-        ];
-
         let pontuacao = [
             usuario.quiz1,
             usuario.quiz3
         ];
-
-        new Chart(document.getElementById("graficoLinha"), {
-
-            type: 'line',
-
+        graficoLinha = new Chart(document.getElementById("graficoLinha"), {
+            type: 'bar',
             data: {
-
-                labels: ['Quiz 1','Quiz 3'],
-
+                labels: ['Quiz 1', 'Quiz 3'],
                 datasets: [{
-
                     label: 'Pontuação',
-
-                    data: [usuario.pontos_quiz3],
-
+                    data: pontuacao,
                     borderColor: '#955a97',
-
                     tension: 0.3
                 }]
             }
         });
+        
+        let musica_final = "ILHA"
+        if (usuario.te_esperando > usuario.ilha) {
+            musica_final = "TE ESPERANDO"
+        } 
+        if (usuario.ambiente_errado > usuario.te_esperando) {
+            musica_final = "AMBIENTE ERRADO"
+        }
+        if (usuario.mesmo_sem_estar > usuario.ambiente_errado) {
+            musica_final = "MESMO SEM ESTAR"
+        }
+
+        usuario_musica.innerHTML = musica_final;
     }
 </script>
