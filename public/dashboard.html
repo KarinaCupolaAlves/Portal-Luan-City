@@ -34,14 +34,9 @@
                 <h2 id="usuario_musica">ILHA</h2>
                 <p>Música que mais combina com você</p>
             </div>
-
-            <div class="kpi">
-                <h2 id="usuario_nivel_fa">Super fã</h2>
-                <p>Seu nível de fã</p>
-            </div>
             <div class="kpi">
                 <h2 id="usuario_aproveitamento">80%</h2>
-                <p>aproveitamento nos quizzes</p>
+                <p>Média de acertos nos quizzes</p>
             </div>
             <div class="kpi">
                 <h2>Romântico</h2>
@@ -51,31 +46,36 @@
 
         <div class="graficosDash">
 
-            <div class="grafico">
-                <canvas id="graficoBarra"></canvas>
+            <div class="graficosDashLinha">
+
+                <div class="grafico">
+                    <canvas id="graficoBarra"></canvas>
+                </div>
+                <div class="grafico">
+                    <canvas id="graficoDonuts"></canvas>
+                </div>
             </div>
-            <div class="grafico">
-                <canvas id="graficoDonuts"></canvas>
-            </div>
-            <div class="grafico">
-                <canvas id="graficoRadar"></canvas>
-            </div>
-            <div class="grafico">
-                <canvas id="graficoLinha"></canvas>
+
+            <div class="graficoDashLinha">
+                <div class="grafico-R">
+                    <canvas id="graficoRadar"></canvas>
+                </div>
             </div>
         </div>
+
     </div>
 
-    <footer class="footer">
-        <div class="container-footer">
-            <p>Portal Luan City</p>
-            <div class="creditos">
-                <span>Feito com amor por aluna da SPtech</span>
-                <span class="version">v1.0.0</span>
+
+        <footer class="footer">
+            <div class="container-footer">
+                <p>Portal Luan City</p>
+                <div class="creditos">
+                    <span>Feito com amor por aluna da SPtech</span>
+                    <span class="version">v1.0.0</span>
+                </div>
             </div>
-        </div>
-    </footer>
-    <script src="./assets/js/navbar.js"></script>
+        </footer>
+        <script src="./assets/js/navbar.js"></script>
 
 </body>
 
@@ -90,20 +90,52 @@
 
     let graficoBarra;
     let graficoDonuts;
-    let graficoRadar;
-    let graficoLinha;
+    let graficoRadar;   
 
     async function BuscarDados(idUsuario) {
-
+           
         let resultado = await fetch(`/dashboard/BuscarDados/${idUsuario}`)
         let dados = await resultado.json();
         let usuario = dados[0];
-    
+
         carregarGraficos(usuario);
-   
-}
+
+    }
 
     function carregarGraficos(usuario) {
+        console.log(usuario)
+
+        if(usuario.ilha >
+            usuario.te_esperando &&
+            usuario.ilha >
+            usuario.ambiente_errado &&
+            usuario.ilha >
+            usuario.mesmo_sem_estar
+        ){
+            usuario_musica.innerHTML = `ILHA`;
+        }else if(usuario.te_esperando >
+            usuario.ilha &&
+            usuario.te_esperando >
+            usuario.ambiente_errado &&
+            usuario.te_esperando >
+            usuario.mesmo_sem_estar){
+             usuario_musica.innerHTML = `TE ESPERANDO`;
+        }else if(usuario.mesmo_sem_estar >
+            usuario.ilha &&
+            usuario.mesmo_sem_estar >
+            usuario.ambiente_errado &&
+            usuario.mesmo_sem_estar >
+            usuario.te_esperando){
+            usuario_musica.innerHTML = `MESMO SEM ESTAR`;
+        }else if(usuario.ambiente_errado >
+            usuario.ilha &&
+            usuario.ambiente_errado >
+            usuario.ambiente_errado &&
+            usuario.ambiente_errado >
+            usuario.te_esperando){
+            usuario_musica.innerHTML = `AMBIENTE ERRADO`;
+        }
+        
 
         let nomesMusicas = [
             'ILHA',
@@ -137,18 +169,9 @@
             }
         });
 
-        let ConhecimentoUser = [
-            'Super fã',
-            'Fã casual'
-        ];
+        
 
         let porcentagem = ((usuario.quiz1 + usuario.quiz3) / 10) * 100;
-
-        if (porcentagem > 60) {
-            usuario_nivel_fa.innerHTML = "Super fã"
-        } else {
-            usuario_nivel_fa.innerHTML = "Fã comum"
-        }
         usuario_aproveitamento.innerHTML = porcentagem + "%"
 
 
@@ -157,7 +180,7 @@
             data: {
                 labels: ["Quiz 1", "Quiz 3"],
                 datasets: [{
-                    label: "Aprovaitamento dos quizzes",
+                    label: "Acertos dos quizzes",
                     data: [(usuario.quiz1 / 5 * 100), (usuario.quiz3 / 5 * 100)],
                     backgroundColor: [
                         '#955a97',
@@ -171,16 +194,14 @@
             'Romântico',
             'Animado',
             'Emotivo',
-            'Sofredor',
-            'Caseiro'
+            'Sofredor'
         ];
 
         let Nivel = [
             usuario.romantico,
             usuario.animado,
             usuario.emotivo,
-            usuario.sofredor,
-            usuario.caseiro
+            usuario.sofredor
         ];
 
 
@@ -193,7 +214,7 @@
                     data: Nivel,
                     backgroundColor:
                         'rgba(149,90,151,0.2)',
-                    borderColor: '#955a97',     
+                    borderColor: '#955a97',
                     borderWidth: 2
                 }]
             }
@@ -203,30 +224,6 @@
             usuario.quiz1,
             usuario.quiz3
         ];
-        graficoLinha = new Chart(document.getElementById("graficoLinha"), {
-            type: 'bar',
-            data: {
-                labels: ['Quiz 1', 'Quiz 3'],
-                datasets: [{
-                    label: 'Pontuação',
-                    data: pontuacao,
-                    borderColor: '#955a97',
-                    tension: 0.3
-                }]
-            }
-        });
-        
-        let musica_final = "ILHA"
-        if (usuario.te_esperando > usuario.ilha) {
-            musica_final = "TE ESPERANDO"
-        } 
-        if (usuario.ambiente_errado > usuario.te_esperando) {
-            musica_final = "AMBIENTE ERRADO"
-        }
-        if (usuario.mesmo_sem_estar > usuario.ambiente_errado) {
-            musica_final = "MESMO SEM ESTAR"
-        }
 
-        usuario_musica.innerHTML = musica_final;
     }
 </script>
