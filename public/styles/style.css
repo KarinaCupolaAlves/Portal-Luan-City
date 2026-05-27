@@ -186,49 +186,14 @@ a {
     margin-top: 20px;
 }
 
-.sobre-container {
+.sobre-texto {
     width: 90%;
     margin: auto;
-}
-
-.sobre-card {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 40px 0;
     gap: 30px;
-}
-
-.sobre-card.reverse {
-    flex-direction: row-reverse;
-}
-
-.sobre-card-texto {
-    flex: 1;
-}
-
-.sobre-card-texto h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-}
-
-.sobre-card-texto p {
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-.sobre-card-img {
-    flex: 1;
-}
-
-.sobre-card-img img {
-    width: 100%;
-    max-width: 400px;
-    border-radius: 10px;
-}
-
-.reverse {
-    flex-direction: row-reverse;
 }
 
 .infos {

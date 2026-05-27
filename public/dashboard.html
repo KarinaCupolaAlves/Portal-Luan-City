@@ -96,6 +96,7 @@
            
         let resultado = await fetch(`/dashboard/BuscarDados/${idUsuario}`)
         let dados = await resultado.json();
+        console.log(dados)
         let usuario = dados[0];
 
         carregarGraficos(usuario);
@@ -130,7 +131,7 @@
         }else if(usuario.ambiente_errado >
             usuario.ilha &&
             usuario.ambiente_errado >
-            usuario.ambiente_errado &&
+            usuario.mesmo_sem_estar &&
             usuario.ambiente_errado >
             usuario.te_esperando){
             usuario_musica.innerHTML = `AMBIENTE ERRADO`;

@@ -115,18 +115,11 @@
       setInterval(sumirMensagem, 5000);
     }
 
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    /*for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
-        console.log("Código de ativação válido.");
-        break;
-      } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-        finalizarAguardar();
-      }
-    }*/
+    if (senhaLet != confirmacaoSenhaLet) {
+      mensagem_erro.style.display = "block";
+      mensagem_erro.innerHTML = "As senhas não coincidem!";
+      return;
+    }
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -168,8 +161,6 @@
 
     return false;
   }
-
-
 
   function sumirMensagem() {
     mensagem_erro.style.display = "none";
