@@ -23,7 +23,7 @@ CREATE TABLE resultadoQuiz(
 	pontuação INT,
 	dt_quiz DATETIME,
 	FOREIGN KEY(fk_usuario)
-	REFERENCES usuario(id_usuario),
+	REFERENCES usuario(id_usuaario),
 	FOREIGN KEY(fkQuiz)
 	REFERENCES quiz(idQuiz)
 	);
@@ -37,7 +37,8 @@ CREATE TABLE resultadoQuiz(
   fk_usuario INT,
   FOREIGN KEY (fk_usuario) REFERENCES usuario (id_usuario)
 );
-
+ 
+SELECT * FROM usuario_musica;
 CREATE TABLE usuario_personalidade (
   idPersonalidade INT PRIMARY KEY AUTO_INCREMENT,
   romantico INT,
@@ -50,7 +51,25 @@ CREATE TABLE usuario_personalidade (
 );
 SELECT * FROM usuario_personalidade;
 
-INSERT INTO usuario (nome,email,senha,dt_nasc,ja_escutou) VALUES
+CREATE TABLE usuarioNivelFa(
+idNivel INT PRIMARY KEY AUTO_INCREMENT,
+pontos INT,
+dt_quiz TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+fk_usuario INT,
+FOREIGN KEY (fk_usuario) REFERENCES usuario (id_usuario)
+);
+
+SELECT * FROM usuarioNivelFa;
+CREATE TABLE usuario_pontuacao(
+idAcertos INT PRIMARY KEY AUTO_INCREMENT,
+pontos INT,
+dt_quiz TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+fk_usuario INT,
+FOREIGN KEY (fk_usuario) REFERENCES usuario (id_usuario)
+);
+
+SELECT * FROM usuario_pontuacao;
+INSERT INTO usuario (nome,email,senha,telefone, dt_nasc) VALUES
 ('Karina Cupola','karinacupola@gmail.com','karina@123','2027-10-22',true);
 
 INSERT INTO quiz (nomeQuiz) VALUES
@@ -59,5 +78,22 @@ INSERT INTO quiz (nomeQuiz) VALUES
 ('Adivinhe a música do Luan Santana pelo trecho	');
 
 
-
-
+SELECT 
+	u.nome,
+	um.ilha, um.te_esperando,
+    um.ambiente_errado, um.mesmo_sem_estar,
+    um.fk_usuario, 
+    upe.romantico, upe.animado, 
+    upe.emotivo, upe.sofredor, upe.caseiro, 
+    unf.pontos AS quiz1,
+    upo.pontos AS quiz3
+    FROM usuario u
+    LEFT JOIN usuario_musica um
+    ON um.fk_usuario = u.id_usuario
+    LEFT JOIN usuario_personalidade upe
+    ON upe.fk_usuario = u.id_usuario
+    LEFT JOIN usuarioNivelFa unf
+    ON unf.fk_usuario = u.id_usuario	
+    LEFT JOIN usuario_pontuacao upo
+    ON upo.fk_usuario = u.id_usuario;
+    
