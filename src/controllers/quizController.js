@@ -26,10 +26,9 @@ function salvarPersonalidade(req, res) {
     let pontos_animado = req.body.animadoServer
     let pontos_emotivo = req.body.emotivoServer
     let pontos_sofredor = req.body.sofredorServer
-    let pontos_caseiro = req.body.caseiroServer
     let idUsuario = req.body.idUsuarioServer
 
-    quizModel.salvarPersonalidade(pontos_romantico, pontos_animado, pontos_emotivo, pontos_sofredor, pontos_caseiro, idUsuario)
+    quizModel.salvarPersonalidade(pontos_romantico, pontos_animado, pontos_emotivo, pontos_sofredor, idUsuario)
         .then(function (resposta) {
             res.json(resposta)
         })

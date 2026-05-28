@@ -39,7 +39,7 @@
                 <p>Média de acertos nos quizzes</p>
             </div>
             <div class="kpi">
-                <h2>Romântico</h2>
+                <h2 id="Nivel">Romântico</h2>
                 <p>Seu estilo dominante</p>
             </div>
         </div>
@@ -62,20 +62,18 @@
                 </div>
             </div>
         </div>
-
     </div>
 
-
-        <footer class="footer">
-            <div class="container-footer">
-                <p>Portal Luan City</p>
-                <div class="creditos">
-                    <span>Feito com amor por aluna da SPtech</span>
-                    <span class="version">v1.0.0</span>
-                </div>
+    <footer class="footer">
+        <div class="container-footer">
+            <p>Portal Luan City</p>
+            <div class="creditos">
+                <span>Feito com amor por aluna da SPtech</span>
+                <span class="version">v1.0.0</span>
             </div>
-        </footer>
-        <script src="./assets/js/navbar.js"></script>
+        </div>
+    </footer>
+    <script src="./assets/js/navbar.js"></script>
 
 </body>
 
@@ -90,14 +88,40 @@
 
     let graficoBarra;
     let graficoDonuts;
-    let graficoRadar;   
+    let graficoRadar;
+
 
     async function BuscarDados(idUsuario) {
-           
+
         let resultado = await fetch(`/dashboard/BuscarDados/${idUsuario}`)
         let dados = await resultado.json();
         console.log(dados)
-        let usuario = dados[0];
+        let usuario = dados;
+        usuario_aproveitamento.innerHTML = (((usuario.quiz1 + usuario.quiz3) / 10) * 100) + '%'
+        
+        let estilo = "";
+
+        if (dados.romantico > dados.animado &&
+            dados.romantico > dados.emotivo &&
+            dados.romantico > dados.sofredor) {
+
+            estilo = "Romântico";
+
+        } else if (dados.animado > dados.emotivo &&
+            dados.animado > dados.sofredor) {
+
+            estilo = "Animado";
+
+        } else if (dados.emotivo > dados.sofredor) {
+
+            estilo = "Emotivo";
+
+        } else {
+
+            estilo = "Sofredor";
+        }
+
+        Nivel.innerHTML = estilo
 
         carregarGraficos(usuario);
 
@@ -106,37 +130,37 @@
     function carregarGraficos(usuario) {
         console.log(usuario)
 
-        if(usuario.ilha >
+        if (usuario.ilha >
             usuario.te_esperando &&
             usuario.ilha >
             usuario.ambiente_errado &&
             usuario.ilha >
             usuario.mesmo_sem_estar
-        ){
+        ) {
             usuario_musica.innerHTML = `ILHA`;
-        }else if(usuario.te_esperando >
+        } else if (usuario.te_esperando >
             usuario.ilha &&
             usuario.te_esperando >
             usuario.ambiente_errado &&
             usuario.te_esperando >
-            usuario.mesmo_sem_estar){
-             usuario_musica.innerHTML = `TE ESPERANDO`;
-        }else if(usuario.mesmo_sem_estar >
+            usuario.mesmo_sem_estar) {
+            usuario_musica.innerHTML = `TE ESPERANDO`;
+        } else if (usuario.mesmo_sem_estar >
             usuario.ilha &&
             usuario.mesmo_sem_estar >
             usuario.ambiente_errado &&
             usuario.mesmo_sem_estar >
-            usuario.te_esperando){
+            usuario.te_esperando) {
             usuario_musica.innerHTML = `MESMO SEM ESTAR`;
-        }else if(usuario.ambiente_errado >
+        } else if (usuario.ambiente_errado >
             usuario.ilha &&
             usuario.ambiente_errado >
             usuario.mesmo_sem_estar &&
             usuario.ambiente_errado >
-            usuario.te_esperando){
+            usuario.te_esperando) {
             usuario_musica.innerHTML = `AMBIENTE ERRADO`;
         }
-        
+
 
         let nomesMusicas = [
             'ILHA',
@@ -170,10 +194,7 @@
             }
         });
 
-        
 
-        let porcentagem = ((usuario.quiz1 + usuario.quiz3) / 10) * 100;
-        usuario_aproveitamento.innerHTML = porcentagem + "%"
 
 
         graficoDonuts = new Chart(document.getElementById("graficoDonuts"), {
@@ -204,6 +225,7 @@
             usuario.emotivo,
             usuario.sofredor
         ];
+        console.log(Nivel)
 
 
         graficoRadar = new Chart(document.getElementById("graficoRadar"), {

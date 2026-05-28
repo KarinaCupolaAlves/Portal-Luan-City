@@ -10,11 +10,11 @@ function salvarMusica(pontos_ilha, pontos_teEsperando, pontos_ambienteErrado, po
     return database.executar(instrucaoSql);
 }
 
-function salvarPersonalidade(pontos_romantico, pontos_animado, pontos_emotivo, pontos_sofredor, pontos_caseiro, idUsuario) {
+function salvarPersonalidade(pontos_romantico, pontos_animado, pontos_emotivo, pontos_sofredor, idUsuario) {
     console.log("ACESSEI O QUIZ MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function salvarPersonalidade():")
     var instrucaoSql = `
-        INSERT INTO usuario_personalidade (romantico, animado, emotivo, sofredor, caseiro, fk_usuario) VALUES
-        (${pontos_romantico}, ${pontos_animado}, ${pontos_emotivo}, ${pontos_sofredor}, ${pontos_caseiro},${idUsuario});
+        INSERT INTO usuario_personalidade (romantico, animado, emotivo, sofredor, fk_usuario) VALUES
+        (${pontos_romantico}, ${pontos_animado}, ${pontos_emotivo}, ${pontos_sofredor},${idUsuario});
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -33,6 +33,15 @@ function salvarPontos(pontos, idUsuario) {
     console.log("ACESSEI O QUIZ MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function salvarPontos():")
     var instrucaoSql = `
         INSERT INTO usuario_pontuacao(pontos,fk_usuario)VALUES
+        (${pontos},${idUsuario})`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function AtualizarData() {
+    console.log("ACESSEI O QUIZ MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function salvarPontos():")
+    var instrucaoSql = `
+        UPDATE usuario_pontuacao 
         (${pontos},${idUsuario})`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

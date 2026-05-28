@@ -19,9 +19,7 @@
 
     <div class="header">
         <h1 class="titulo">Portal Luan City</h1>
-        <ul class="navbar" id="navbar_ul">
-
-        </ul>
+        <ul class="navbar" id="navbar_ul"></ul>
     </div>
 
     <div id="menu">
@@ -59,13 +57,11 @@
                     <p>Acerte as músicas lendo apenas uma frase</p>
                 </div>
             </div>
-
         </div>
     </div>
 
     <div class="quiz" id="quiz1">
         <h2>O quanto você conhece o Luan Santana?</h2>
-
         <div class="pergunta">
             <h3>1. Qual o nome completo dele?</h3>
             <input type="radio" name="q1" value="0"> Luan Santana Domingos<br>
@@ -230,20 +226,18 @@
     <!--footer fim-->
 
     <script src="./assets/js/navbar.js"></script>
-    <script>
-        alterarNavbar()
-    </script>
-
+    
 </body>
 <html>
 <script>
+
+    alterarNavbar()
+
     function AbrirQuiz(idQuiz) {
         document.getElementById("menu").style.display = "none";
-
         document.getElementById("quiz1").style.display = "none";
         document.getElementById("quiz2").style.display = "none";
         document.getElementById("quiz3").style.display = "none";
-
         document.getElementById(idQuiz).style.display = "block";
     }
 
@@ -253,7 +247,6 @@
     }
 
     async function resultadoQuiz1() {
-
         let idUsuario = sessionStorage.ID_USUARIO;
         let pontos = 0
 
@@ -268,43 +261,26 @@
             return;
         }
 
-        if (q1 && q1.value == '1') {
-            pontos++
-        }
-        if (q2 && q2.value == '1') {
-            pontos++
-        }
-        if (q3 && q3.value == '1') {
-            pontos++
-        }
-        if (q4 && q4.value == '1') {
-            pontos++
-        }
-        if (q5 && q5.value == '1') {
-            pontos++
-        }
+        if (q1 && q1.value == '1') pontos++
+        if (q2 && q2.value == '1') pontos++
+        if (q3 && q3.value == '1') pontos++
+        if (q4 && q4.value == '1') pontos++
+        if (q5 && q5.value == '1') pontos++
 
         let resultado = await fetch("/quiz/salvar_nivel", {
             method: "POST",
-
-            headers: {
-                "Content-type": "application/json"
-            },
-
+            headers: {"Content-type": "application/json"},
             body: JSON.stringify({
                 pontosServer: pontos,
                 idUsuarioServer: idUsuario
             })
         })
         if (resultado.ok) {
-
-            alert('Vooê acertou ' + pontos + ' de 5 perguntas!')
-
+            alert('Vooê acertou ' + pontos + ' de 5 perguntas! Confira sua dashboard.')
             Voltarmenu('quiz1')
         } else {
             alert("Erro ao salvar quiz 1");
         }
-
     }
 
     async function resultadoQuiz2() {
@@ -334,38 +310,34 @@
             pontos[respostas[i]]++;
         }
 
-        let musicaFinal = ""
-
-        if (pontos.musica1 >= pontos.musica2 &&
-            pontos.musica1 >= pontos.musica3 &&
-            pontos.musica1 >= pontos.musica4
+        if (pontos.musica1 > pontos.musica2 &&
+            pontos.musica1 > pontos.musica3 &&
+            pontos.musica1 > pontos.musica4
         ) {
             musicaFinal = "musica1";
         }
-        if (pontos.musica2 >= pontos.musica1 &&
-            pontos.musica2 >= pontos.musica3 &&
-            pontos.musica2 >= pontos.musica4
+        if (pontos.musica2 > pontos.musica1 &&
+            pontos.musica2 > pontos.musica3 &&
+            pontos.musica2 > pontos.musica4
         ) {
             musicaFinal = "musica2";
         }
-        if (pontos.musica3 >= pontos.musica1 &&
-            pontos.musica3 >= pontos.musica2 &&
-            pontos.musica3 >= pontos.musica4
+        if (pontos.musica3 > pontos.musica1 &&
+            pontos.musica3 > pontos.musica2 &&
+            pontos.musica3 > pontos.musica4
         ) {
             musicaFinal = "musica3";
         }
-        if (pontos.musica4 >= pontos.musica1 &&
-            pontos.musica4 >= pontos.musica2 &&
-            pontos.musica4 >= pontos.musica3
+        if (pontos.musica4 > pontos.musica1 &&
+            pontos.musica4 > pontos.musica2 &&
+            pontos.musica4 > pontos.musica3
         ) {
             musicaFinal = "musica4";
         }
 
         let resultado = await fetch("/quiz/salvar_musica", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
                 teEsperandoServer: pontos.musica1,
                 ilhaServer: pontos.musica2,
@@ -391,27 +363,24 @@
 
             let resultadoPersonalidade = await fetch("/quiz/salvar_personalidade", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
-                    romanticoServer: pontos.musica1,
-                    animadoServer: pontos.musica2,
-                    emotivoServer: pontos.musica3,
+                    romanticoServer: pontos.musica2,
+                    animadoServer: pontos.musica3,
+                    emotivoServer: pontos.musica1,
                     sofredorServer: pontos.musica4,
-                    caseiroServer: idUsuario
+                    idUsuarioServer: idUsuario
                 })
             })
 
             Voltarmenu('quiz2')
         } else {
-            alert("Deu errado");
+            alert("Erro!");
         }
     }
 
 
     async function resultadoQuiz3() {
-
         let idUsuario = sessionStorage.ID_USUARIO;
         let pontos = 0
 
@@ -426,28 +395,15 @@
             return;
         }
 
-        if (a1 && a1.value == '1') {
-            pontos++
-        }
-        if (a2 && a2.value == '1') {
-            pontos++
-        }
-        if (a3 && a3.value == '1') {
-            pontos++
-        }
-        if (a4 && a4.value == '1') {
-            pontos++
-        }
-        if (a5 && a5.value == '1') {
-            pontos++
-        }
+        if (a1 && a1.value == '1') pontos++
+        if (a2 && a2.value == '1') pontos++
+        if (a3 && a3.value == '1') pontos++
+        if (a4 && a4.value == '1') pontos++
+        if (a5 && a5.value == '1') pontos++
 
         let resultado = await fetch("/quiz/salvar_pontos", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
                 pontosServer: pontos,
                 idUsuarioServer: idUsuario
@@ -455,7 +411,7 @@
         });
 
         if (resultado.ok) {
-            alert('Vooê acertou ' + pontos + ' de 5 perguntas!')
+            alert('Vooê acertou ' + pontos + ' de 5 perguntas! Confira sua dashboard.')
 
             Voltarmenu('quiz3')
         } else {

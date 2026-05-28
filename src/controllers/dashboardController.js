@@ -5,6 +5,7 @@ function BuscarDados(req, res) {
     
     dashboardModel.BuscarDados(idUsuario)
         .then(function (resposta) {
+            console.log(resposta)
             res.json(resposta)
         })
         .catch(function (erro) {
