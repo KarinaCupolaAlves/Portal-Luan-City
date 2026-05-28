@@ -124,7 +124,6 @@
         return false;
     }
 
-    // SENHA
     if (senhaLet.length < 8) {
 
         mensagem_erro.innerHTML =
@@ -133,7 +132,6 @@
         return false;
     }
 
-    // CONFIRMAR SENHA
     if (senhaLet != confirmacaoSenhaLet) {
 
         mensagem_erro.innerHTML =
@@ -142,7 +140,6 @@
         return false;
     }
 
-    // TELEFONE
     if (telefoneLet.length < 10) {
 
         mensagem_erro.innerHTML =
@@ -151,7 +148,6 @@
         return false;
     }
 
-    // SUCESSO
     mensagem_erro.innerHTML =
         "Cadastro validado com sucesso!";
 
@@ -169,7 +165,6 @@
       mensagem_erro.innerHTML =
         "(Mensagem de erro para todos os campos em branco)";
 
-      // finalizarAguardar();
       return false;
     } else {
       setInterval(sumirMensagem, 5000);
