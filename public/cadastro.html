@@ -82,18 +82,78 @@
   let listaEmpresasCadastradas = [];
 
   function cadastrar() {
-    // aguardar();
 
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var nomeLet = nome_input.value;
-    var emailLet = email_input.value;
-    var senhaLet = senha_input.value;
+    let nomeLet = nome_input.value.trim();
+    let emailLet = email_input.value.trim();
+    let senhaLet = senha_input.value;
     let confirmacaoSenhaLet = confirmacao_senha_input.value;
-    let telefoneLet = telefone_input.value;
+    let telefoneLet = telefone_input.value.trim();
     let dt_nascLet = dt_nasc_input.value;
 
+    mensagem_erro.style.display = "block";
 
+    if (
+        nomeLet == "" ||
+        emailLet == "" ||
+        senhaLet == "" ||
+        confirmacaoSenhaLet == "" ||
+        telefoneLet == "" ||
+        dt_nascLet == ""
+    ) {
+
+        mensagem_erro.innerHTML =
+            "Preencha todos os campos!";
+
+        return false;
+    }
+
+    if (nomeLet.length < 3) {
+        mensagem_erro.innerHTML =
+            "O nome deve ter pelo menos 3 caracteres.";
+        return false;
+    }
+
+    if (
+        !emailLet.includes("@") ||
+        !emailLet.includes(".com")
+    ) {
+
+        mensagem_erro.innerHTML =
+            "Digite um e-mail válido.";
+
+        return false;
+    }
+
+    // SENHA
+    if (senhaLet.length < 8) {
+
+        mensagem_erro.innerHTML =
+            "A senha deve ter no mínimo 8 caracteres.";
+
+        return false;
+    }
+
+    // CONFIRMAR SENHA
+    if (senhaLet != confirmacaoSenhaLet) {
+
+        mensagem_erro.innerHTML =
+            "As senhas não coincidem.";
+
+        return false;
+    }
+
+    // TELEFONE
+    if (telefoneLet.length < 10) {
+
+        mensagem_erro.innerHTML =
+            "Digite um telefone válido.";
+
+        return false;
+    }
+
+    // SUCESSO
+    mensagem_erro.innerHTML =
+        "Cadastro validado com sucesso!";
 
     // Verificando se há algum campo em branco
     if (

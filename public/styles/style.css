@@ -6,6 +6,10 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 .header {
     height: 12vh;
     padding: 0 25px;
@@ -68,11 +72,11 @@ a {
 }
 
 .nome-usuario {
-    color: #6a1b9a;
+    color: #9d4edd;
 }
 
 .btn-sair {
-    background-color: #6a1b9a;
+    background-color: #9d4edd;
     border: none;
     padding: 3px 15px;
     border-radius: 10px;
@@ -87,113 +91,136 @@ a {
 }
 
 .banner {
-    background-image: url('../assets/imgs/Luan\ Santana\ inicio.jpg');
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.45),
+        rgba(0, 0, 0, 0.45)
+    ),
+    url('../assets/imgs/Luan\ Santana\ inicio.jpg');
     background-size: cover;
-    background-position: top;
-
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 88vh;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-
-    min-height: 600px;
-
-    color: #fdfdfd;
 }
 
-
-
 .conteudoHome {
-    width: 45%;
+    width: 100%;
+    max-width: 550px;
+
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    gap: 15px;
-    padding: 2%;
+    align-items: flex-start;
+
+    gap: 20px;
 }
 
 .conteudoHome h1 {
-    text-align: center;
-    font-size: 23px;
-}
-
-.conteudoHome p {
-    text-align: center;
-    width: 100%;
-    font-size: 20px;
-}
-
-.conteudoHome button {
-    align-self: center;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #6a1b9a;
-    color: #fefefd;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 50px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.conteudoHome button:hover {
-    transform: scale(1.05);
-    opacity: 0.9;
-}
-
-.container-banner h1 {
-    margin-bottom: 15px;
-    text-align: right;
-    font-size: 10px;
+    font-size: 2rem;
+    line-height: 1.2;
+    text-align: left;
     color: white;
-    width: 450px;
-    padding-right: 10px;
+}
+
+.conteudoHome h1 span {
+    color: #d4af37;
 }
 
 .segunda-frase {
-    color: #fdfdfd;
-    font-size: 22px;
-    opacity: 0.9;
-    margin-top: 10px;
-    margin-bottom: 30px;
-    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-align: left;
+    color: rgba(255,255,255,0.9);
+
+    margin: 0;
+}
+
+.btn-explorar {
+    background: linear-gradient(90deg, #6a1b9a, #9d4edd);
+    color: white;
+
+    border: none;
+    border-radius: 50px;
+
+    padding: 14px 32px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.3s;
+
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-explorar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.5);
 }
 
 /* SOBRE */
 .sobre {
     background: linear-gradient(180deg, #0b0d17 0%, #111428 100%);
     color: white;
+    padding: 100px 8%;
     text-align: center;
-    padding: 80px 20px;
 }
 
-.sobre h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
+.sobre > h1 {
+    font-size: 42px;
+    color: #d4af37;
+    margin-bottom: 15px;
 }
 
 .sobre h2 {
-    font-size: 20px;
+    font-size: 24px;
+    font-weight: 400;
     margin-bottom: 10px;
 }
 
 .sobre h4 {
     font-size: 18px;
     opacity: 0.8;
-    font-family: sans-serif;
-    margin-top: 20px;
+    margin-bottom: 60px;
 }
 
-.sobre-texto {
-    width: 90%;
-    margin: auto;
+.sobre-cards {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 40px 0;
     gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.sobre-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 35px;
+    width: 100%;
+    max-width: 500px;
+    text-align: left;
+    transition: 0.3s;
+}
+
+.sobre-card:hover {
+    transform: translateY(-8px);
+    border-color: #d4af37;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+.sobre-card h1 {
+    font-size: 24px;
+    color: #d4af37;
+    margin-bottom: 20px;
+}
+
+.sobre-card p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.9);
 }
 
 .infos {
@@ -304,83 +331,171 @@ a {
     margin-top: 5px;
 }
 
-.cardErro{
-    position: absolute;
-    top: 15%;
-    right: 2%;
-    background-color: white;
-    color: red;
-    align-items: center;
-    justify-content: center;
+.cardErro {
+    position: fixed;
+
+    top: 20px;
+    right: 20px;
+
+    background: rgba(20,20,20,0.95);
+
+    color: white;
+
+    padding: 18px 22px;
+
+    border-left: 5px solid #d4af37;
+
+    border-radius: 14px;
+
+    font-size: 14px;
+
+    width: 320px;
+
+    z-index: 999;
+
     display: none;
-    width: 20%;
-    min-height: 200px;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.35);
 }
 
 /* LOGIN */
 .login {
-    display: flex;
-    background-image: url('../assets/imgs/Luan-Santana3.webp');
-    background-size: cover;
-    background-position: center;
     min-height: 100vh;
+
+    display: flex;
     align-items: center;
     justify-content: center;
+
     padding: 40px 20px;
+
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,0.65),
+            rgba(0,0,0,0.65)
+        ),
+        url('../assets/imgs/Luan-Santana3.webp');
+
+    background-size: cover;
+    background-position: center;
 }
 
 .card-login {
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(12px);
-    border-radius: 25px;
-    text-align: center;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
-    padding: 35px 30px;
+    width: 100%;
+    max-width: 420px;
 
+    padding: 45px 35px;
+
+    border-radius: 28px;
+
+    background: rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,0.45);
+
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 }
 
 .card-login h2 {
-    color: rgb(188, 108, 191);
-    margin-bottom: 25px;
-    font-size: 28px;
+    text-align: center;
+
+    font-size: 34px;
+
+    color: #d4af37;
+
+    margin-bottom: 10px;
 }
 
 .formularioLogin {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-
+    gap: 22px;
 }
 
 .campoL {
     display: flex;
     flex-direction: column;
-    text-align: left;
+    gap: 8px;
 }
 
 .campoL span {
-    color: rgb(188, 108, 191);
-    font-weight: bold;
-    margin-bottom: 6px;
-    font-size: 13px;
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 600;
 }
 
 .campoL input {
-    padding: 12px;
-    border-radius: 10px;
-    outline: none;
-    border: 2px solid rgb(214, 114, 207);
-    font-size: 14px;
     width: 100%;
-    background: rgba(255, 255, 255, 0.9);
+
+    padding: 14px 18px;
+
+    border-radius: 14px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    background: rgba(255,255,255,0.08);
+
+    color: white;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.3s;
 }
 
-.botao-login {
-    margin-top: 10px;
-    padding: 12px;
+.campoL input::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+.campoL input:focus {
+    border-color: #d4af37;
+
+    box-shadow:
+        0 0 15px rgba(212,175,55,0.35);
+}
+
+.opcaoCadastro {
+    text-align: center;
+
+    font-size: 14px;
+
+    color: rgba(255,255,255,0.8);
+}
+
+.opcaoCadastro a {
+    color: #d4af37;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.opcaoCadastro a:hover {
+    color: #f5d97b;
+}
+
+.botaoLogin {
+    width: 100%;
+
+    padding: 14px;
+
     border: none;
-    border-radius: 12px;
-    background: rgb(188, 108, 191);
+
+    border-radius: 14px;
+    background: linear-gradient(
+        90deg,
+        #6a1b9a,
+        #9d4edd
+    );
     color: white;
     font-size: 16px;
     font-weight: bold;
@@ -388,112 +503,154 @@ a {
     transition: 0.3s;
 }
 
-.botao-login:hover {
-    background: rgb(160, 80, 165);
-    transform: scale(1.03);
-}
+.botaoLogin:hover {
+    transform: translateY(-3px);
 
-.opcoes-login {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    color: white;
-    margin-bottom: 20px;
-    font-size: 14px;
-}
-
-.opcoes-login a {
-    color: rgb(188, 108, 191);
-    text-decoration: none;
+    box-shadow:
+        0 10px 20px rgba(157,78,221,0.35);
 }
 
 /* CADASTRO */
 .cadastro {
-    display: flex;
-    background-image: url('../assets/imgs/Luan-Santana7.webp');
-    background-size: cover;
-    background-position: center;
     min-height: 100vh;
+
+    display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px 20px;
+
+    padding: 50px 20px;
+
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,0.7),
+            rgba(0,0,0,0.7)
+        ),
+        url('../assets/imgs/Luan-Santana7.webp');
+
+    background-size: cover;
+    background-position: center;
 }
 
 .card-cadastro {
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(12px);
-    border-radius: 25px;
-    text-align: center;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6); 
-    width: 50%;
+    width: 100%;
+    max-width: 520px;
+
+    padding: 45px 40px;
+
+    border-radius: 28px;
+
+    background: rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,0.45);
+
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    padding: 35px 0;
-}
-
-.formularioCadastro {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
+    gap: 25px;
 }
 
 .card-cadastro h2 {
-    color: rgb(188, 108, 191);
-    margin-bottom: 25px;
-    font-size: 28px;
+    font-size: 34px;
+
+    color: #d4af37;
+
+    text-align: center;
 }
 
-.cadastro a {
-    color: rgb(188, 108, 191);
-    text-decoration: none;
+.formularioCadastro {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
 }
 
 .campoC {
-    width: 100%;
     display: flex;
     flex-direction: column;
-    text-align: left;
-    gap: 5px;
+
+    gap: 8px;
 }
 
-
 .campoC span {
-    color: rgb(188, 108, 191);
-    font-weight: bold;
-    margin-bottom: 6px;
-    font-size: 13px;
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 600;
 }
 
 .campoC input {
-    padding: 12px;
-    border-radius: 10px;
-    outline: none;
-    border: 2px solid rgb(151, 67, 151);
-    font-size: 14px;
     width: 100%;
-    background: white;
-}
 
-.botao-cadastro {
-    margin-top: 10px;
-    padding: 12px;
-    border: none;
-    border-radius: 12px;
-    background: rgb(188, 108, 191);
+    padding: 14px 18px;
+
+    border-radius: 14px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    background: rgba(255,255,255,0.08);
+
     color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
+
+    font-size: 15px;
+
+    outline: none;
+
     transition: 0.3s;
 }
 
-.botao-cadastro:hover {
-    background: rgb(160, 80, 165);
-    transform: scale(1.03);
+.campoC input::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+.campoC input:focus {
+    border-color: #d4af37;
+
+    box-shadow:
+        0 0 15px rgba(212,175,55,0.35);
+}
+
+.botaoCadastro {
+    width: 100%;
+
+    margin-top: 10px;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: linear-gradient(
+        90deg,
+        #6a1b9a,
+        #9d4edd
+    );
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.botaoCadastro:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 20px rgba(157,78,221,0.35);
 }
 
 /*  QUIZ */
@@ -504,7 +661,7 @@ a {
 }
 
 #menu h1 {
-    color: rgb(149, 90, 151);
+    color: #d4af37;
     font-size: 30px;
     padding-bottom: 5%;
     display: flex;
